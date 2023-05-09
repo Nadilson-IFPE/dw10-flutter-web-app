@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core/ui/helpers/loader.dart';
+import '../../core/ui/helpers/messages.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -9,7 +10,7 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with Loader {
+class _HomePageState extends State<HomePage> with Loader, Messages {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,6 +21,8 @@ class _HomePageState extends State<HomePage> with Loader {
         showLoader();
         await Future.delayed(const Duration(seconds: 2));
         hideLoader();
+
+        showError('Erro de alguma coisa!');
       }),
       body: Container(
           // Testar se o app está obtendo o valor da variável no arquivo .env
