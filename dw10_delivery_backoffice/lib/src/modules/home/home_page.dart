@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/ui/helpers/loader.dart';
 import '../../core/ui/helpers/messages.dart';
+import '../../core/ui/helpers/size_extensions.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -27,6 +28,8 @@ class _HomePageState extends State<HomePage> with Loader, Messages {
       body: Container(
           // Testar se o app está obtendo o valor da variável no arquivo .env
           // child: Text(Env.instance.get('backend_base_url')),
+          // Para testar o helper size_extensions
+          // child: Text(context.screenWidth.toString()),
           ),
     );
   }
