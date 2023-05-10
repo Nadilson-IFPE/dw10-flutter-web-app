@@ -13,9 +13,9 @@ class AuthRepositoryImpl implements AuthRepository {
   AuthRepositoryImpl(this._dio);
 
   @override
-  Future login(String email, String password) async {
+  Future<AuthModel> login(String email, String password) async {
     try {
-      final result = await _dio.unauth().post('auth',
+      final result = await _dio.auth().post('/auth',
           data: {'email': email, 'password': password, 'admin': true});
 
       return AuthModel.fromMap(result.data);
