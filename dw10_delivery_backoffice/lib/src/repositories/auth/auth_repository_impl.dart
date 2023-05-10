@@ -16,7 +16,7 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<AuthModel> login(String email, String password) async {
     try {
       final result = await _dio.auth().post('/auth',
-          data: {'email': email, 'password': password, 'admin': true});
+          data: {'email': email, 'password': password, 'admin': true},);
 
       return AuthModel.fromMap(result.data);
     } on DioError catch (e, s) {

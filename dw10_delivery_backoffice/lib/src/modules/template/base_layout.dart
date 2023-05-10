@@ -31,8 +31,8 @@ class BaseLayout extends StatelessWidget {
               alignment: Alignment.centerLeft,
               child: Container(
                   width: shortestSide * .13,
-                  margin: EdgeInsets.only(left: 60),
-                  child: Image.asset('assets/images/logo.png')),
+                  margin: const EdgeInsets.only(left: 60),
+                  child: Image.asset('assets/images/logo.png'),),
             ),
             Positioned.fill(
               top: shortestSide * .13,

@@ -132,7 +132,7 @@ class _LoginPageState extends State<LoginPage> with Loader, Messages {
                         decoration: const InputDecoration(labelText: 'E-mail'),
                         validator: Validatorless.multiple([
                           Validatorless.required(
-                              'Informar o e-mail é obrigatório!'),
+                              'Informar o e-mail é obrigatório!',),
                           Validatorless.email('E-mail inválido!'),
                         ]),
                       ),
@@ -145,7 +145,7 @@ class _LoginPageState extends State<LoginPage> with Loader, Messages {
                         obscureText: true,
                         decoration: const InputDecoration(labelText: 'Senha'),
                         validator: Validatorless.required(
-                            'Informar a senha é obrigatório!'),
+                            'Informar a senha é obrigatório!',),
                       ),
                       const SizedBox(
                         height: 30,
