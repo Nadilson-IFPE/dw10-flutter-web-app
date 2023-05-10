@@ -25,11 +25,37 @@ class _HomePageState extends State<HomePage> with Loader, Messages {
         showError('Erro de alguma coisa!');
       }),
       body: Container(
-          // Testar se o app está obtendo o valor da variável no arquivo .env
-          // child: Text(Env.instance.get('backend_base_url')),
-          // Para testar o helper size_extensions
-          // child: Text(context.screenWidth.toString()),
+        // Testar se o app está obtendo o valor da variável no arquivo .env
+        // child: Text(Env.instance.get('backend_base_url')),
+        // Para testar o helper size_extensions
+        // child: Text(context.screenWidth.toString()),
+        child: Container(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Form(
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  child: TextFormField(
+                    decoration: const InputDecoration(
+                      label: Text('Login'),
+                    ),
+                    validator: (String) => 'Erro',
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: 200,
+                height: 50,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  child: const Text('Botão'),
+                ),
+              )
+            ],
           ),
+        ),
+      ),
     );
   }
 }
