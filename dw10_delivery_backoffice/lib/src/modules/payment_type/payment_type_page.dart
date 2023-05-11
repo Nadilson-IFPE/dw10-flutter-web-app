@@ -38,8 +38,9 @@ class _PaymentTypePageState extends State<PaymentTypePage>
             break;
           case PaymentTypeStateStatus.error:
             hideLoader();
-            showError(controller.errorMessage ??
-                'Erro ao buscar formas de pagamaento!');
+            showError(
+              controller.errorMessage ?? 'Erro ao buscar formas de pagamaento!',
+            );
             break;
         }
       });
