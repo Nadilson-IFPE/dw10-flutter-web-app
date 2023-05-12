@@ -3,6 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 
+import '../../../core/ui/helpers/debouncer.dart';
 import '../../../core/ui/helpers/loader.dart';
 import '../../../core/ui/helpers/messages.dart';
 import '../../../core/ui/widgets/base_header.dart';
@@ -19,6 +20,7 @@ class ProductsPage extends StatefulWidget {
 class _ProductsPageState extends State<ProductsPage> with Loader, Messages {
   final controller = Modular.get<ProductsController>();
   late final ReactionDisposer statusDisposer;
+  final debouncer = Debouncer(milliseconds: 500);
 
   @override
   void initState() {
@@ -65,6 +67,11 @@ class _ProductsPageState extends State<ProductsPage> with Loader, Messages {
             title: 'ADMINISTRAR PRODUTOS',
             buttonLabel: 'ADICIONAR PRODUTO',
             buttonPressed: () {},
+            searchChange: (value) {
+              debouncer.call(() {
+                controller.filterByName(value);
+              });
+            },
           ),
           const SizedBox(
             height: 50,
