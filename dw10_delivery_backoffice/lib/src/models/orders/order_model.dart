@@ -43,14 +43,14 @@ class OrderModel {
       date: DateTime.parse(map['date']),
       status: OrderStatus.parse(map['status']),
       orderProducts: List<OrderProductModel>.from(
-        (map['products'] as List<int>).map<OrderProductModel>(
+        (map['products']).map<OrderProductModel>(
           (x) => OrderProductModel.fromMap(x as Map<String, dynamic>),
         ),
       ),
       userId: (map['user_id'] ?? 0) as int,
       address: (map['address'] ?? '') as String,
       cpf: (map['cpf'] ?? '') as String,
-      paymentTypeId: (map['payment_meyhod_id'] ?? 0) as int,
+      paymentTypeId: (map['payment_method_id'] ?? 0) as int,
     );
   }
 
