@@ -26,6 +26,7 @@ abstract class LoginControllerBase with Store {
 
   LoginControllerBase(this._loginService);
 
+  @action
   Future<void> login(String email, String password) async {
     try {
       _loginStatus = LoginStateStatus.loading;
