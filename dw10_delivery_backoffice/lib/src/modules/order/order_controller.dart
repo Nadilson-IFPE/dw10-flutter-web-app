@@ -2,9 +2,11 @@ import 'dart:developer';
 
 import 'package:mobx/mobx.dart';
 
+import '../../dto/order/order_dto.dart';
 import '../../models/orders/order_model.dart';
 import '../../models/orders/order_status.dart';
 import '../../repositories/order/order_repository.dart';
+import '../../services/order/get_order_by_id.dart';
 
 part 'order_controller.g.dart';
 
@@ -20,6 +22,7 @@ class OrderController = OrderControllerBase with _$OrderController;
 
 abstract class OrderControllerBase with Store {
   final OrderRepository _orderRepository;
+  final GetOrderById _getOrderById;
 
   @readonly
   var _status = OrderStateStatus.initial;
@@ -35,7 +38,13 @@ abstract class OrderControllerBase with Store {
   @readonly
   String? _errorMessage;
 
-  OrderControllerBase(this._orderRepository) {
+  @readonly
+  OrderDto? _orderSelected;
+
+  OrderControllerBase(
+    this._orderRepository,
+    this._getOrderById,
+  ) {
     final todayNow = DateTime.now();
     _today = DateTime(todayNow.year, todayNow.month, todayNow.day);
   }
@@ -56,7 +65,7 @@ abstract class OrderControllerBase with Store {
   @action
   Future<void> showDetailModel(OrderModel model) async {
     _status = OrderStateStatus.loading;
-    await Future.delayed(Duration.zero);
+    _orderSelected = await _getOrderById(model);
     _status = OrderStateStatus.showDetailModal;
   }
 }
