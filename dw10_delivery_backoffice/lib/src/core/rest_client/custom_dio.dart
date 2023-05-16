@@ -14,22 +14,30 @@ class CustomDio extends DioForBrowser {
             baseUrl: Env.instance.get('backend_base_url'),
             connectTimeout: const Duration(seconds: 5),
             receiveTimeout: const Duration(seconds: 60),
+            /* headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
+            }, */
           ),
         ) {
-    interceptors.add(
+    // Performance bug fix:
+    /* interceptors.add(
       LogInterceptor(
         requestBody: true,
         responseBody: true,
         requestHeader: true,
         responseHeader: true,
       ),
-    );
+    ); */
 
     _authInterceptor = AuthInterceptor(storage);
   }
 
   CustomDio auth() {
-    interceptors.add(_authInterceptor);
+    // Performance bug fix:
+    if (!interceptors.contains(_authInterceptor)) {
+      interceptors.add(_authInterceptor);
+    }
     return this;
   }
 
